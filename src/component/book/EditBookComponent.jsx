@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ApiService from "../../service/ApiService";
+import moment from "moment";
 
 class EditBookComponent extends Component {
 
@@ -7,7 +8,7 @@ class EditBookComponent extends Component {
         super(props);
         this.state ={
             id: '',
-            ISBN: '',
+            isbn: '',
             name: '',
             author: '',
             releaseDate: '',
@@ -25,9 +26,10 @@ class EditBookComponent extends Component {
         ApiService.fetchBookById(window.localStorage.getItem("bookId"))
             .then((res) => {
                 let book = res.data;
+
                 this.setState({
                 id: book.id,
-                ISBN: book.ISBN,
+                isbn: book.isbn,
                 name: book.name,
                 author: book.author,
                 releaseDate: book.releaseDate,
@@ -42,7 +44,7 @@ class EditBookComponent extends Component {
     saveBook = (e) => {
         e.preventDefault();
         let book = {id: this.state.id, 
-            ISBN: this.state.ISBN, 
+            isbn: this.state.isbn, 
             name: this.state.name,
             author: this.state.author, 
             releaseDate: this.state.releaseDate, 
@@ -59,14 +61,14 @@ class EditBookComponent extends Component {
             <div>
                 <h2 className="text-center">Edit Book</h2>
                 <form>
-                    <div className="form-group">
+                    <div className="form-group hidden">
                         <label>Book ID:</label>
                         <input type="text" placeholder="id" name="id" className="form-control" value={this.state.id} onChange={this.onChange}/>
                     </div>
 
                     <div className="form-group">
                         <label>ISBN:</label>
-                        <input type="text" placeholder="ISBN" name="ISBN" className="form-control" value={this.state.ISBN} onChange={this.onChange}/>
+                        <input type="text" placeholder="ISBN" name="isbn" className="form-control" value={this.state.isbn} onChange={this.onChange}/>
                     </div>
 
                     <div className="form-group">
@@ -81,7 +83,7 @@ class EditBookComponent extends Component {
 
                     <div className="form-group">
                         <label>Release Date</label>
-                        <input type="Date" placeholder="Release Date" name="releaseDate" className="form-control" value={this.state.releaseDate} onChange={this.onChange}/>
+                        <input type="date" placeholder="Release Date" name="releaseDate" className="form-control" value={moment(new Date(this.state.releaseDate)).format('YYYY-MM-DD')} onChange={this.onChange}/>
                     </div>
 
                     <div className="form-group">

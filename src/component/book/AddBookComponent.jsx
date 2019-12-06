@@ -6,8 +6,8 @@ class AddBookComponent extends Component{
     constructor(props){
         super(props);
         this.state ={
-            id: '',
-            ISBN: '',
+            id: null,
+            isbn: '',
             name: '',
             author: '',
             releaseDate: '',
@@ -19,7 +19,7 @@ class AddBookComponent extends Component{
     saveBook = (e) => {
         e.preventDefault();
         let book = {id: this.state.id, 
-                    ISBN: this.state.ISBN, 
+                    isbn: this.state.isbn, 
                     name: this.state.name,
                     author: this.state.author, 
                     releaseDate: this.state.releaseDate, 
@@ -40,13 +40,8 @@ class AddBookComponent extends Component{
                 <h2 className="text-center">Add Book</h2>
                 <form>
                 <div className="form-group">
-                    <label>Book ID:</label>
-                    <input type="text" placeholder="id" name="id" className="form-control" value={this.state.id} onChange={this.onChange}/>
-                </div>
-
-                <div className="form-group">
                     <label>ISBN:</label>
-                    <input type="text" placeholder="ISBN" name="ISBN" className="form-control" value={this.state.ISBN} onChange={this.onChange}/>
+                    <input type="text" placeholder="ISBN" name="isbn" className="form-control" value={this.state.isbn} onChange={this.onChange}/>
                 </div>
 
                 <div className="form-group">

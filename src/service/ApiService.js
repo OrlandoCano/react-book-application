@@ -1,15 +1,14 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8080/v1/api/books';
+const API_URL = 'http://localhost:9080/v1/api/books';
 
 class ApiService {
 
     fetchBooks() {
-        debugger;
         return axios.get(API_URL);
     }
 
-    fetchBooksById(bookId) {
+    fetchBookById(bookId) {
         return axios.get(API_URL + '/' + bookId);
     }
 
@@ -18,11 +17,11 @@ class ApiService {
     }
 
     addBook(book) {
-        return axios.post(""+API_URL, book);
+        return axios.post("" + API_URL, book);
     }
 
     editBook(book) {
-        return axios.put(API_URL + '/' + book.id, book);
+        return axios.put("" + API_URL, book);
     }
 
 }

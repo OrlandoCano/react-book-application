@@ -24,7 +24,7 @@ function App() {
 }
 
 const style = {
-    color: 'red',
+    color: 'green',
     margin: '10px'
 }
 export default App;

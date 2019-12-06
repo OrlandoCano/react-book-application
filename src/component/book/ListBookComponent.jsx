@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ApiService from "../../service/ApiService";
+import moment from "moment";
 
 class ListBookComponent extends Component {
 
@@ -22,7 +23,6 @@ class ListBookComponent extends Component {
     reloadBookList() {
         ApiService.fetchBooks()
             .then((res) => {
-                debugger;
                 this.setState({books: res.data})
             });
     }
@@ -67,14 +67,14 @@ class ListBookComponent extends Component {
                             this.state.books.map(
                                 book =>
                                     <tr key={book.id}>
-                                        <td>{book.ISBN}</td>
-                                        <td>{book.lastName}</td>
+                                        <td>{book.isbn}</td>
                                         <td>{book.name}</td>
                                         <td>{book.author}</td>
+                                        <td>{moment(new Date(book.releaseDate)).format('MM/DD/YYYY')}</td>
                                         <td>{book.editorial}</td>
                                         <td>
-                                            <button className="btn btn-success" onClick={() => this.deleteBook(book.id)}> Delete</button>
-                                            <button className="btn btn-success" onClick={() => this.editBook(book.id)} style={{marginLeft: '20px'}}> Edit</button>
+                                            <td><button className="btn btn-success" onClick={() => this.deleteBook(book.id)}> Delete</button></td>
+                                            <td><button className="btn btn-success" onClick={() => this.editBook(book.id)} style={{marginLeft: '10px'}}> Edit</button></td>
                                         </td>
                                     </tr>
                             )
